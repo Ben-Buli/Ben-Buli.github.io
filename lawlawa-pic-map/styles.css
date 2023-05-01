@@ -1,0 +1,194 @@
+body {
+  background: black;
+}
+
+/* 景點的圖片 */
+.sign {
+  cursor: pointer;
+  order: 30;
+}
+.sign:hover {
+  /* box-shadow:  1em 1em white; */
+  transform: translateY(-15px);
+  transition: 0.5s;
+  filter: drop-shadow(0px 0px 6px rgba(255, 246, 166, 0.712));
+}
+
+.sign:active {
+  filter: drop-shadow(0px 0px 9px rgba(255, 246, 166, 0.836));
+}
+
+.sign:hover::after {
+  background: #ccc;
+  border-radius: 33px;
+}
+
+#map-group {
+  cursor: pointer;
+}
+
+#map-group:hover .map-logo {
+  display: block;
+  filter: drop-shadow(0px 0px 20px rgba(165, 37, 17, 0.8));
+  transform: translateY(-15px);
+  transition: 0.5s;
+}
+
+#map-group:hover .map-title {
+  display: block;
+  filter: drop-shadow(0px 0px 25px rgba(187, 52, 31, 0.8));
+  transform: translateY(-15px);
+  transition: 0.5s;
+}
+
+/* 螢火蟲效果 */
+.firefly {
+  width: 2px;
+  height: 2px;
+  background: yellow;
+  border-radius: 50%;
+  box-shadow: 0 0 0 5px rgba(154, 205, 50, 0.4);
+  overflow: hidden;
+}
+
+/* sweet alert */
+.swal2-confirm {
+  background-color: #a63114 !important;
+}
+.swal2-styled.swal2-confirm:focus {
+  box-shadow: 0 0 0 3px rgba(166, 49, 20, 0.5) !important;
+}
+
+header, main{
+	margin: 0 0;
+}
+
+/* Figma */
+.lawlawa-map0 {
+ margin-top: 0;
+  overflow: hidden;
+  width: 1040px;
+  height: calc( 1040px - 48px ) ;
+  position: absolute;
+}
+.lawlawa-map {
+  width: 1040px;
+  height: 1040px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-image: url(images/bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.qasup {
+  width: 280px;
+  height: 354px;
+  position: absolute;
+  left: 27px;
+  top: 9px;
+  background-image: url(images/qasup_1.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.map-logo {
+	border-radius: 100%;
+  width: 145px;
+  height: 147px;
+  position: absolute;
+  left: 793px;
+  top: 603px;
+  background-image: url(images/logo.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.right-top-road {
+  width: 187px;
+  height: 176px;
+  position: absolute;
+  left: 627px;
+  top: 335px;
+  background-image: url(images/right_top_road.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.siwRatan {
+  width: 308px;
+  height: 273px;
+  position: absolute;
+  left: 330px;
+  top: 217px;
+  background-image: url(images/tribe.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.map-title {
+  width: 253px;
+  height: 136px;
+  position: absolute;
+  left: 745px;
+  top: 768px;
+  background-image: url(images/__________.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.left-top-road {
+  width: 320px;
+  height: 265px;
+  position: absolute;
+  left: 0px;
+  top: 218px;
+  background-image: url(images/let_top_road.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.left-bottom-road {
+  width: 286px;
+  height: 253px;
+  position: absolute;
+  left: 177px;
+  top: 557px;
+  background-image: url(images/left_down_road_1.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.paRin-ay-leppaw {
+  width: 262px;
+  height: 358px;
+  position: absolute;
+  left: 374px;
+  top: 629px;
+  background-image: url(images/parin_na_leppaw.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.gray-road {
+  width: 417px;
+  height: 161px;
+  position: absolute;
+  left: 623px;
+  top: 0px;
+  background-image: url(images/road.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.e214_17 {
+  width: 174px;
+  height: 163px;
+  position: absolute;
+  left: 133px;
+  top: 836px;
+  background-image: url(images/lasung.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.iRuR {
+  width: 297px;
+  height: 342px;
+  position: absolute;
+  left: 743px;
+  top: 81px;
+  background-image: url(images/irur.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
