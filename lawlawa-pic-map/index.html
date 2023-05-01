@@ -1,61 +1,193 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>流流社部落探索地圖</title>
+    <!-- Required meta tags -->
     <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
-    <title>Html Generated</title>
-    <meta name="description" content="Figma htmlGenerator" />
-    <meta name="author" content="htmlGenerator" />
-
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="styles.css" />
 
-    <style>
-      /*
-                Figma Background for illustrative/preview purposes only.
-                You can remove this style tag with no consequence
-              */
-      body {
-        background: black;
-      }
-
-      .sign:hover{
-        /* box-shadow:  1em 1em white; */
-        transform: translateY(-20px);
-        transition: .5s;
-      }
-
-      .sign:hover::after{
-        background: #ccc;
-        border-radius: 33px;
-      }
-    </style>
+    <link
+      rel="shortcut icon"
+      href="./images/logo-clear.png"
+      type="image/x-icon"
+    />
   </head>
 
   <body>
+    <header>
+      <!-- place navbar here -->
+      <h1 class="text-center bg-dark text-light">流流社部落探索地圖</h1>
+    </header>
 
+    <!-- Modal -->
+    <main class="container">
+      <div class="lawlawa-map0">
+        <div class="lawlawa-map"></div>
+        <div class="left-top-road"></div>
+        <div class="right-top-road"></div>
+        <div class="left-bottom-road"></div>
+        <div class="gray-road"></div>
+        <a id="map-group">
+          <div class="map-title"></div>
+          <div class="map-logo"></div>
+        </a>
+        <div data-kebalan="qasup" class="qasup sign"></div>
+        <div data-kebalan="siwRatan" class="siwRatan sign"></div>
+        <div data-kebalan="paRinAyLeppaw" class="paRin-ay-leppaw sign"></div>
+        <div data-kebalan="RasibuTasawsanLasung" class="e214_17 sign"></div>
+        <div data-kebalan="iRuR" class="iRuR sign"></div>
+      </div>
+    </main>
+    <footer>
+      <!-- place footer here -->
+    </footer>
 
-    <!-- <iframe src="https://drive.google.com/file/d/1hwZIeI_KAyH0y9pb23HUZ8MabYrGUGRD/preview" width="640" height="480" allow="autoplay" autoplay></iframe> -->
-    
-    <audio src="https://doc-0c-14-docs.googleusercontent.com/docs/securesc/pss7ra92vpa57un3dnjugg21r7hc0s87/ivf3isns5tf2lcboecijbi57ro2e1iea/1682942175000/14495845288155827755/14495845288155827755/1hwZIeI_KAyH0y9pb23HUZ8MabYrGUGRD?e=download&ax=ADWCPKCoEQ29kt9MOazpoNHHChlLejIsbT8F9Ipjp_TNjvMT_gk0Cd41UG8H6KG75rMc4uE49LCceukFY-1bigng4IZ3W80DLzzpxLYNjLgem1TvHlcohVfo6VtbWkm4tqK8LszzMur2Kfx-tzhrphQnAilJhIMvTGodIRQzLSLIZj5PWV63zgZxLL5YTo8fYPmfGTmVP-pQpdyPxIypIeNb_QqIv6EBToeL97v2yaxTOt8rkuS_a0Ne-p0dPvPofKS574Q9Fg2gCSanKJtc2gRZAUJ__kZzDG-fsOtnQgQ4vfhKxJpN-YtvEP_fjEpILt5tLf6WGufzQAhw9YzWP4Gdh_SkLHW_hbQ0GYG8uzCxvQKpTSmPX6pQWUnscwUVamtgbV80yBBSB3p7cJNeeh52zXFI4a-PKC01-SjElN3tNqUjm0frFfjKaBeC1z7UxVwXTPXf-crfcZ25sef_sqojYsfBehHjqkELvZrf8Z8iNoaiV0ykD1dUPQqKUIRB9AF5BacE7-P-eMDT-b922XmlLFxVDILZmDAaq94BUUE8QgIKBh5KdU0T6dhDLVVhCdrF4zeDu9lu6nqgvHHihTLU3Mf1MlZoTjj8yJFhjO9maqWFGGKAo0TYDStc8X-FU9JEUPMd6rJs1GN6zK9o-xeKAy7C3-N2_D1yIrkBltvfLyY3wUczQ8HqeEOIFz4GgNVPLDYwnFjEnhpp05t02F1Q7OTYnSGe7hcSfb9qKrKkso89nMu0aa897Jh0nT50Oipj9zWSifgU7vZTWJOh-WmWVm6LAeHt-E3HWaH44BzFNQmgFgw7a5E_jyUMgzAKOpUz_raGWL4LMsVPpowb-O60B4LR1_VapxzbmJ37ogT2EHKo_eu5VLCNuvTOh6vGJY24af6GytxCSmKxZd2KKZ0XDM-uL1njYXaH6HSZPjWOyaYOvZ-WzuDGtwTHsdV757rUFrO7vzURq5PxfWPh90aBWeeh9OKVy632V_R816na7hVRKNEBKqPwA5TL-zbNmOWGm0Eeha6z1ZiuQVRwyPLhfjNl0JFOvgU2IMH0Vgm8zsl2Jjxf-9-FQsUczJm6uuXmk4YAMKsnoENa4iRJJa-_2HPJfoYY-CxQHvHliInqzYqiaG5ZG6cnM1Iy4Q&uuid=2eaa7f72-9279-44a6-a28b-dceaca27ac5e&authuser=0"  autoplay></audio>
-    <div class="e214_20">
-      <div class="e214_2"></div>
-      <div class="e214_18 sign"></div>
-      <div class="e214_5"></div>
-      <div class="e214_8"></div>
-      <div class="e214_10 sign"></div>
-      <div class="e214_11"></div>
-      <div class="e214_14"></div>
-      <div class="e214_3"></div>
-      <div class="e214_15 sign"></div>
-      <div class="e214_16"></div>
-      <div class="e214_17 sign"></div>
-      <div class="e214_12 sign"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
-        
-        
-    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      const datas = [
+        {
+          word: "qasup",
+          img: "qasup.png",
+          title: "大葉山欖<br/>qasup",
+          info: "",
+        },
+        {
+          word: "siwRatan",
+          img: "siwRatan.jpg",
+          title: "流流社部落總部<br/>siwRatan zaniaq",
+          info: "",
+        },
+        {
+          word: "paRinAyLeppaw",
+          img: "paRinAyLeppaw.jpg",
+          title: "高腳樹屋<br/>paRin ay leppaw",
+          info: "",
+        },
+        {
+          word: "RasibuTasawsanLasung",
+          img: "RasibuTasawsanLasung.jpg",
+          title: "百年古井<br/>Rasibu tasawan lasung",
+          info: "位於古厝樹屋底下！",
+        },
+        {
+          word: "iRuR",
+          img: "iRuR.jpg",
+          title: "冬山河舊河道<br/>iRuR",
+          info: "",
+        },
+      ];
+
+      $(".sign").on("click", function (params) {
+        datas.forEach((data) => {
+          if (data.word == $(this).attr("data-kebalan")) {
+            Swal.fire({
+              title: data.title,
+              text: data.info,
+              imageUrl: `./images/gallery/${data.img}`,
+              imageWidth: 400,
+              imageHeight: 300,
+              imageAlt: data.title,
+              confirmButtonText: "我知道了~",
+            });
+          }
+        });
+      });
+    </script>
+
+    <!-- firefly 螢火蟲效果 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
 
     <script>
-      
+      // firefly animation
+      const FIREFLIES = 10;
+      const maxHeight = 600;
+      const maxWidth = 1200;
+
+      const random = (min, max) => {
+        return Math.floor(Math.random() * (max - min) + min);
+      };
+      for (var i = 0; i < FIREFLIES; i++) {
+        let div = document.createElement("div");
+        div.setAttribute("class", "firefly");
+        document.body.appendChild(div);
+      }
+      var fireflies = document.querySelectorAll(".firefly");
+      for (var i = 0; i < FIREFLIES; i++) {
+        let ix = random(-10, maxWidth + 10);
+        let fx = random(-10, maxWidth + 10);
+
+        let iy = random(-10, maxHeight + 10);
+        let fy = random(-10, maxHeight + 10);
+
+        gsap.fromTo(
+          fireflies[i],
+          {
+            x: ix,
+            y: iy,
+          },
+          {
+            x: fx,
+            y: fy,
+            duration: random(5, 15),
+            // ease: "slow (0.7, 0.7, false)",
+            ease: "rough ({template: none.out, strength: 1, points: 20, taper: 'none', randomize: true, clamp:false})",
+            repeat: -1,
+            yoyo: true,
+          }
+        );
+        gsap.fromTo(
+          fireflies[i],
+          {
+            boxShadow: "0 0 0 0px rgba(154, 205, 50, 0)",
+          },
+          {
+            boxShadow: "0 0 0 3px rgba(154, 205, 50, 0.4)",
+            duration: random(2, 4),
+            ease: "slow (0.7, 0.7, false)",
+            repeat: -1,
+            yoyo: true,
+          }
+        );
+        gsap.fromTo(
+          fireflies[i],
+          {
+            opacity: 0,
+          },
+          {
+            duration: random(1, 5),
+            opacity: 0.9,
+            repeat: -1,
+            yoyo: true,
+          }
+        );
+      }
     </script>
+
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+      integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
