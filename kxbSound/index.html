@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Audio Player</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <style>
+      body {
+        background: pink;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+      }
+
+      .audio-player {
+        width: 300px;
+        text-align: center;
+      }
+
+      audio {
+        width: 100%;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="audio-player">
+      <audio id="audio" controls>
+        <source src="your-audio-file.mp3" type="audio/mp3" />
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+    <!-- <script src="script.js"></script> -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const audioPlayer = document.getElementById("audio");
+        const audioSource = document.querySelector("#audio source");
+
+        // Function to change the audio source
+        function changeAudioSource(newSource) {
+          audioSource.src = newSource;
+          audioPlayer.load(); // Reload the audio player with the new source
+          audioPlayer.play(); // Start playing the new audio
+        }
+
+        // Function to get parameter by name from URL
+        function getParameterByName(name, url) {
+          if (!url) url = window.location.href;
+          name = name.replace(/[\[\]]/g, "\\$&");
+          const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`),
+            results = regex.exec(url);
+          if (!results) return null;
+          if (!results[2]) return "";
+          return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        // Example usage
+        const soundParam = getParameterByName("sound");
+        if (soundParam) {
+          const newAudioURL = `https://dbkaxabu.ithuan.tw/%E8%81%BD?%E8%AA%9E%E8%A9%9E%E7%B7%A8%E8%99%9F=${soundParam}&%E5%85%A7%E5%AE%B9=%E5%99%B6%E5%93%88%E5%B7%AB`;
+          changeAudioSource(newAudioURL);
+        }
+      });
+    </script>
+  </body>
+</html>
