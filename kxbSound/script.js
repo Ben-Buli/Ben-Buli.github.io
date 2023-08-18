@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function changeAudioSource(newSource) {
       audioSource.src = newSource;
       audioPlayer.load(); // Reload the audio player with the new source
-      audioPlayer.play(); // Start playing the new audio
+      // audioPlayer.play(); // Start playing the new audio
     }
 
     // Function to get parameter by name from URL
