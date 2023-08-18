@@ -51,8 +51,8 @@
 
         // Function to get parameter by name from URL
         function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
             console.log("url: ", url);
-          if (!url) url = window.location.href;
           name = name.replace(/[\[\]]/g, "\\$&");
           const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`),
             results = regex.exec(url);
