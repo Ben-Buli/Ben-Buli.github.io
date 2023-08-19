@@ -15,6 +15,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // 取得網址參數: Function to get parameter by name from URL
   function getParameterByName(name, url) {
     if (!url) url = window.location.href;
+    // URL解碼
+    url = decodeURIComponent(url);
+    
     console.log("url: ", url);
     name = name.replace(/[\[\]]/g, "\\$&");
     const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`),
