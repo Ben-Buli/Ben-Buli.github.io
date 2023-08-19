@@ -82,7 +82,7 @@ kxbAudio.addEventListener("error", function name(params) {
 let taigiAudioIsActive = true;
 taigiAudio.addEventListener("error", function name(params) {
   taigiAudioIsActive = false;
-  taigiPlayButton.textContent = "尚無族語發音";
+  taigiPlayButton.textContent = "無臺語解釋";
   taigiPlayButton.disabled = true; // 關閉按鈕點擊功能
 });
 
