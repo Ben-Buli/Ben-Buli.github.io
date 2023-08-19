@@ -63,6 +63,19 @@ document.addEventListener("DOMContentLoaded", function () {
   // #endregion
 });
 
+ // 音訊播放時搭配欄位標註符號
+ function markText(isPlay, textCol) {
+  if (isPlay) {
+    // 播放時標註聲音對應文字
+    let orginalText = textCol.textContent;
+    textCol.textContent = `${orginalText}  ←`;
+  } else {
+    // 註銷標註符號
+    let orginalText = textCol.textContent;
+    textCol.textContent = orginalText.replace("←", "").trim();
+  }
+}
+
 // 輔助函數：將秒數轉換為可讀的時間格式（例如，mm:ss）
 function formatTime(seconds) {
   var minutes = Math.floor(seconds / 60);
@@ -102,12 +115,13 @@ if (kxbAudioIsActive) {
       kxbAudio.play();
       kxbPlayButton.textContent = "暫停";
       // 播放時標註聲音對應文字
-      let kxbOrgText = kxbText.textContent;
-      kxbText.textContent = `${kxbOrgText}  ←`;
+      markText(true, kxbText);
       // 播放時關閉另一個音訊
       if (taigiAudio.played) {
         taigiAudio.pause();
         taigiPlayButton.textContent = "聽解釋";
+        // 註銷台語的標註符號
+        markText(false, taigiText);
       }
       // 設置音訊的 'timeupdate' 事件處理程序以同步更新當前播放時間
       kxbAudio.addEventListener("timeupdate", function () {
@@ -131,8 +145,7 @@ if (kxbAudioIsActive) {
 kxbAudio.addEventListener("ended", function () {
   kxbPlayButton.textContent = "聽族語";
   // 註銷標註符號
-  let kxbOrgText = kxbText.textContent;
-  kxbText.textContent = kxbOrgText.replace("←", "").trim();
+  markText(false, kxbText);
 });
 
 //#endregion kxb
@@ -144,15 +157,14 @@ taigiPlayButton.addEventListener("click", function () {
     taigiAudio.play();
     taigiPlayButton.textContent = "暫停";
     // 播放時標註聲音對應文字
-    let taigiOrgText = taigiText.textContent;
-    taigiText.textContent = `${taigiOrgText}  ←`;
-
+    markText(true, taigiText);
     // 播放時關閉另一個音訊
     if (kxbAudio.played) {
       kxbAudio.pause();
       kxbPlayButton.textContent = "聽族語";
+      // 註銷噶哈巫語標註符號
+      markText(false, kxbText);
     }
-
     taigiAudio.addEventListener("timeupdate", function () {
       // 取得音訊的當前播放時間（以秒為單位）
       let currentTime = taigiAudio.currentTime;
@@ -173,8 +185,7 @@ taigiPlayButton.addEventListener("click", function () {
 taigiAudio.addEventListener("ended", function () {
   taigiPlayButton.textContent = "聽解釋";
   // 註銷標註符號
-  let taigiOrgText = taigiText.textContent;
-  taigiText.textContent = taigiOrgText.replace("←", "").trim();
+  markText(false, taigiText);
 });
 
 //#endregion taigi
