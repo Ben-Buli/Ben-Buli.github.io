@@ -4,7 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Audio Player</title>
-    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
     <style>
       body {
         background: pink;
@@ -29,13 +35,90 @@
       }
     </style>
   </head>
-  <body>
-    <div class="audio-player">
-      <audio id="audio" controls>
-        <source src="your.wav" type="audio/wav" />
-        Your browser does not support the audio element.
-      </audio>
-    </div>
+
+  <body class="">
+    <main class="">
+      <div class="row dictionary">
+        <div class="col-12 py-2">
+          <div class="row">
+            <div class="col-2"></div>
+            <div class="col-4"><a id="kxbText">punu bekets</a></div>
+            <div class="col-4"><small>噶哈巫語教材標記法</small></div>
+            <div class="col-2"></div>
+          </div>
+        </div>
+        <div class="col-12 py-2">
+          <div class="row">
+            <div class="col-2"></div>
+            <div class="col-4"><a id="tunKunayText">punu bekets</a></div>
+            <div class="col-4"><small>潘永歷標記法</small></div>
+            <div class="col-2"></div>
+          </div>
+        </div>
+        <div class="col-12 py-2">
+          <div class="row">
+            <div class="col-2"></div>
+            <div class="col-4"><a id="chText">頭髮</a></div>
+            <div class="col-4"><small>中文釋解</small></div>
+            <div class="col-2"></div>
+          </div>
+        </div>
+        <div class="col-12 py-2">
+          <div class="row">
+            <div class="col-2"></div>
+            <div class="col-4"><a id="taigiText">thâu-mo•</a></div>
+            <div class="col-4"><small>臺語釋解</small></div>
+            <div class="col-2"></div>
+          </div>
+        </div>
+        <div class="col-12 py-2 mt-3">
+          <div class="row">
+            <div class="col-1"></div>
+            <div class="col-5"><a id="kxbBtn" class="btn btn-outline-danger w-75">聽族語</a></div>
+            <div class="col-5"><a id="taigiBtn" class="btn btn-outline-primary w-75">聽解釋</a></div>
+            <div class="col-1"></div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <!-- <div class="audio-player">
+        <audio id="audio" controls>
+          <source src="your.wav" type="audio/wav" />
+          Your browser does not support the audio element.
+        </audio>
+      </div> -->
+
+      <div class="audio-player">
+        <audio id="kxbPlayer" controls>
+          <source
+            src=""
+            type="audio/wav"
+          />
+          Your browser does not support the audio element.
+        </audio>
+        <audio id="taigiPlayer" controls>
+          <source
+            src=""
+            type="audio/wav"
+          />
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </main>
+
     <script src="script.js"></script>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+      integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
