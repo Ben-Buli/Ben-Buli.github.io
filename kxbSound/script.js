@@ -63,7 +63,15 @@ document.addEventListener("DOMContentLoaded", function () {
   // #endregion
 });
 
-// #region 聽噶哈巫語: 音訊處理
+// 輔助函數：將秒數轉換為可讀的時間格式（例如，mm:ss）
+function formatTime(seconds) {
+  var minutes = Math.floor(seconds / 60);
+  var remainingSeconds = Math.floor(seconds % 60);
+  var formattedTime =
+    minutes + ":" + (remainingSeconds < 10 ? "0" : "") + remainingSeconds;
+  return formattedTime;
+}
+
 const kxbPlayButton = document.getElementById("kxbBtn");
 const kxbAudio = document.getElementById("kxbPlayer");
 
@@ -86,16 +94,32 @@ taigiAudio.addEventListener("error", function name(params) {
   taigiPlayButton.disabled = true; // 關閉按鈕點擊功能
 });
 
+// #region 聽噶哈巫語: 音訊處理
 if (kxbAudioIsActive) {
   kxbPlayButton.addEventListener("click", function () {
     if (kxbAudio.paused) {
       console.log("paused");
       kxbAudio.play();
       kxbPlayButton.textContent = "暫停";
+      // 播放時標註聲音對應文字
+      let kxbOrgText = kxbText.textContent;
+      kxbText.textContent = `${kxbOrgText}  ←`;
+      // 播放時關閉另一個音訊
       if (taigiAudio.played) {
         taigiAudio.pause();
         taigiPlayButton.textContent = "聽解釋";
       }
+      // 設置音訊的 'timeupdate' 事件處理程序以同步更新當前播放時間
+      kxbAudio.addEventListener("timeupdate", function () {
+        // 取得音訊的當前播放時間（以秒為單位）
+        let currentTime = kxbAudio.currentTime;
+        let totalDuration = kxbAudio.duration;
+
+        // 更新顯示當前時間的元素
+        kxbPlayButton.textContent = `${formatTime(
+          totalDuration - currentTime
+        )}`;
+      });
     } else {
       console.log("not paused");
       kxbAudio.pause();
@@ -106,21 +130,39 @@ if (kxbAudioIsActive) {
 
 kxbAudio.addEventListener("ended", function () {
   kxbPlayButton.textContent = "聽族語";
+  // 註銷標註符號
+  let kxbOrgText = kxbText.textContent;
+  kxbText.textContent = kxbOrgText.replace("←", "").trim();
 });
-//#endregion
+
+//#endregion kxb
 
 // #region 聽臺語: 音訊處理
-
 taigiPlayButton.addEventListener("click", function () {
   if (taigiAudio.paused) {
     console.log("paused");
     taigiAudio.play();
     taigiPlayButton.textContent = "暫停";
+    // 播放時標註聲音對應文字
+    let taigiOrgText = taigiText.textContent;
+    taigiText.textContent = `${taigiOrgText}  ←`;
 
+    // 播放時關閉另一個音訊
     if (kxbAudio.played) {
       kxbAudio.pause();
       kxbPlayButton.textContent = "聽族語";
     }
+
+    taigiAudio.addEventListener("timeupdate", function () {
+      // 取得音訊的當前播放時間（以秒為單位）
+      let currentTime = taigiAudio.currentTime;
+      let totalDuration = taigiAudio.duration;
+
+      // 更新顯示當前時間的元素
+      taigiPlayButton.textContent = `${formatTime(
+        totalDuration - currentTime
+      )}`;
+    });
   } else {
     console.log("not paused");
     taigiAudio.pause();
@@ -130,5 +172,9 @@ taigiPlayButton.addEventListener("click", function () {
 
 taigiAudio.addEventListener("ended", function () {
   taigiPlayButton.textContent = "聽解釋";
+  // 註銷標註符號
+  let taigiOrgText = taigiText.textContent;
+  taigiText.textContent = taigiOrgText.replace("←", "").trim();
 });
-//#endregion
+
+//#endregion taigi
