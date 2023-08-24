@@ -119,6 +119,7 @@ if (kxbAudioIsActive) {
       // 播放時關閉另一個音訊
       if (taigiAudio.played) {
         taigiAudio.pause();
+        taigiAudio.currentTime = 0;
         taigiPlayButton.textContent = "聽解釋";
         // 註銷台語的標註符號
         markText(false, taigiText);
@@ -161,6 +162,7 @@ taigiPlayButton.addEventListener("click", function () {
     // 播放時關閉另一個音訊
     if (kxbAudio.played) {
       kxbAudio.pause();
+      kxbAudio.currentTime = 0;
       kxbPlayButton.textContent = "聽族語";
       // 註銷噶哈巫語標註符號
       markText(false, kxbText);
