@@ -56,10 +56,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const taigiStr = getParameterByName("taigi");
 
   // 詞彙文字替換成參數的值
-  kxbText.textContent = kxbStr;
-  tunKunayText.textContent = tunKunaytStr;
-  chText.textContent = chStr;
-  taigiText.textContent = taigiStr;
+  kxbText.textContent = kxbStr == "" ? "-" : kxbStr;
+  tunKunayText.textContent = tunKunaytStr == "" ? "-" : tunKunaytStr;
+  chText.textContent = chStr == "" ? "-" : chStr;
+  taigiText.textContent = taigiStr == "" ? "-" : taigiStr;
   // #endregion
 });
 
