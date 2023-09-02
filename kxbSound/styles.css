@@ -9,6 +9,8 @@ body {
     height: 100vh;
     background-color: #f4f4f4; */
   }
+
+  
   
   .audio-player {
     display: none;
@@ -45,4 +47,29 @@ body {
     max-width: 100%;
     height: 1rem;
   }
+  /*  <- 標註符號 */
+  .mark-row{
+    color: inherit;
+    
+  }
+  .mark-row::after {
+    content: ' ←';
+    color: inherit;
+  }
 
+  /* 阻止文字超連結預設樣式 */
+ .query-text {
+  text-decoration: none;
+  color: inherit;
+  transition: .3s;
+}
+
+.query-text:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.col-12:has(.query-text):hover{
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  z-index: 13;
+}
