@@ -60,6 +60,9 @@ document.addEventListener("DOMContentLoaded", function () {
   tunKunayText.textContent = tunKunaytStr == "" ? "-" : tunKunaytStr;
   chText.textContent = chStr == "" ? "-" : chStr;
   taigiText.textContent = taigiStr == "" ? "-" : taigiStr;
+
+  const title = document.querySelector('.title');
+  title.textContent = kxbText;
   // #endregion
 });
 
