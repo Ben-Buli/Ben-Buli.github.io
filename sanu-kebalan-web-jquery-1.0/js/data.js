@@ -116,10 +116,10 @@ $(document).ready(function () {
           function highlight(match) {
             if (match.toLowerCase() === searchTerm) {
               // 完整匹配
-              return `<a class="kbl-word kbl-main">${match}</a>`;
+              return `<a id="${item.kebalan}" class="kbl-word kbl-main">${match}</a>`;
             } else {
               // 部分匹配
-              return `<a class="kbl-word kbl-close">${match}</a>`;
+              return `<a id="${item.kebalan}" class="kbl-word kbl-close">${match}</a>`;
             }
           }
 
@@ -167,32 +167,32 @@ $(document).ready(function () {
     });
   }
 
-    // #region 播放按鈕
+    // #region 播放按鈕 (暫停使用)
    // 當點擊帶有 'playBtn' 類的 img 時執行
   //  $(document).on('click', '.playBtn .kbl-word', function() {
-    $(document).on('click', '.kbl-word', function() {
-    console.log('audio click');
-    var audioId = $(this).attr('id'); // 獲取音樂檔案的標識（這裡假設它是 img 標籤的 id）
+//     $(document).on('click', '.kbl-word', function() {
+//     console.log('audio click');
+//     var audioId = $(this).attr('id'); // 獲取音樂檔案的標識（這裡假設它是 img 標籤的 id）
 
-    // 執行 AJAX 請求來獲取音樂文件的 URL
-    $.ajax({
-        url: `https://e-dictionary.ilrdf.org.tw/MultiMedia/audio/ckv/${audioId}_%7B1%7D.mp3`, // 這裡替換為服務器上音樂文件的路徑
-        // data: { id: audioId }, // 可以根據需要傳遞額外的數據
-        type: 'GET',
-        success: function(response) {
-            // 假設服務器返回的是音樂文件的 URL
-            var musicUrl = response.url;
+//     // 執行 AJAX 請求來獲取音樂文件的 URL
+//     $.ajax({
+//         url: `https://e-dictionary.ilrdf.org.tw/MultiMedia/audio/ckv/${audioId}_%7B1%7D.mp3`, // 這裡替換為服務器上音樂文件的路徑
+//         // data: { id: audioId }, // 可以根據需要傳遞額外的數據
+//         type: 'GET',
+//         success: function(response) {
+//             // 假設服務器返回的是音樂文件的 URL
+//             var musicUrl = response.url;
 
-            // 創建一個新的 audio 元素並播放音樂
-            var audio = new Audio(musicUrl);
-            console.log('do audio play');
-            audio.play();
-        },
-        error: function(error) {
-            // 處理錯誤情況
-            console.log('Error fetching music file:', error);
-        }
-    });
-});
+//             // 創建一個新的 audio 元素並播放音樂
+//             var audio = new Audio(musicUrl);
+//             console.log('do audio play');
+//             audio.play();
+//         },
+//         error: function(error) {
+//             // 處理錯誤情況
+//             console.log('Error fetching music file:', error);
+//         }
+//     });
+// });
   // #endregion 播放按鈕
 });
