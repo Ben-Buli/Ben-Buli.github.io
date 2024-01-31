@@ -57,7 +57,7 @@ $(document).ready(function () {
   // 輸入並查詢資料
   function processData(data) {
     $("#searchInput").on("submit input", function () {
-      $("main").animate({ scrollTop: 0 }, "slow"); // 打字時移動到最上層
+     
       let searchTerm = $(this).val().toLowerCase();
       $("#results").empty();
 
