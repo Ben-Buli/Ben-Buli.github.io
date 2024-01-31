@@ -52,6 +52,8 @@ body {
     font-family: 'Nunito', sans-serif;
 }
 
+ul {
+	margin-left: 0;
 li {
     list-style-type: none;
     /* margin: 1px auto; */
