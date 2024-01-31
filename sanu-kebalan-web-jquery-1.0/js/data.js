@@ -58,6 +58,8 @@ $(document).ready(function () {
   function processData(data) {
     $("#searchInput").on("submit input", function () {
      
+    $("#result").html(""); //輸入前先清空查詢結果
+
       let searchTerm = $(this).val().toLowerCase();
       $("#results").empty();
 
