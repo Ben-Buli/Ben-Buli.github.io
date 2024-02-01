@@ -1,10 +1,22 @@
-$(document).ready(function () {
+$(function () {
 
-   // 當按鈕被點擊時
-   $("#toTopBtn").on('click', function() {
+  let isFussySearchMode = true;
+  console.log($('#isFussySearch').prop('checked'));
+  $('#isFussySearch').on('change', function () {
+    let isFussyMode = $(this).prop('checked');
+
+    isFussySearchMode = isFussyMode ? true : false;
+    console.log(isFussyMode ? 'true' : 'false');
+  });
+
+
+  // 當按鈕被點擊時
+  $("#toTopBtn").on('click', function () {
     // 滾動到頁面的最頂部
     $("html, body, main").animate({ scrollTop: 0 }, "slow");
-});
+  });
+
+
 
   // 首先檢查 sessionStorage 是否已有數據
   let storedData = sessionStorage.getItem("kbl");
@@ -20,7 +32,9 @@ $(document).ready(function () {
       .done(function (result) {
         console.log("success");
         console.log("result: ", result);
-        sessionStorage.setItem("kbl", JSON.stringify(result));
+        if (result) {
+          sessionStorage.setItem("kbl", JSON.stringify(result));
+        }
         processData(result);
       })
       .fail(function (ex) {
@@ -51,24 +65,29 @@ $(document).ready(function () {
   }
 
 
-
-
-
   // 輸入並查詢資料
   function processData(data) {
     $("#searchInput").on("submit input", function () {
-     
-    $("#result").html(""); //輸入前先清空查詢結果
+      // Implement fuzzy search logic or use existing logic
+      $("#result").html(""); //輸入前先清空查詢結果
 
-      let searchTerm = $(this).val().toLowerCase();
+      let searchTerm = $(this).val().toLowerCase().trim();
       $("#results").empty();
+      if (!isFussySearchMode) {
+        // Implement precise search logic here
+        // For example, filter data for exact matches
+        data = data.filter(item => item.kebalan === searchTerm || item.definition.includes(searchTerm));
+      } else {
 
-      // 檢查 searchTerm 的長度: 字符1個字以下，或非中文
-      if (searchTerm.length <= 1 && !isChinese(searchTerm)) {
-        return; // 如果 searchTerm 下於或等於 1 个字符，则不執行後續操作
+        // 檢查 searchTerm 的長度: 字符1個字以下，或非中文
+        if (searchTerm.length <= 1 && !isChinese(searchTerm)) {
+          return; // 如果 searchTerm 下於或等於 1 个字符，则不執行後續操作
+        }
+       
       }
-      // Sorting logic
-      data.sort(function (a, b) {
+
+       // Sorting logic
+       data.sort(function (a, b) {
         // Check for exact match in kebalan
         if (a.kebalan === searchTerm) {
           return -1;
@@ -114,6 +133,9 @@ $(document).ready(function () {
             "\\b\\w*" + searchTerm + "\\w*\\b",
             "gi"
           );
+
+          // 將item.definition文本換行處理
+          item.definition.replace('.', '.')
 
           // 替换逻辑
           function highlight(match) {
@@ -167,35 +189,36 @@ $(document).ready(function () {
           }
         });
       }
+
     });
   }
 
-    // #region 播放按鈕 (暫停使用)
-   // 當點擊帶有 'playBtn' 類的 img 時執行
+  // #region 播放按鈕 (暫停使用)
+  // 當點擊帶有 'playBtn' 類的 img 時執行
   //  $(document).on('click', '.playBtn .kbl-word', function() {
-//     $(document).on('click', '.kbl-word', function() {
-//     console.log('audio click');
-//     var audioId = $(this).attr('id'); // 獲取音樂檔案的標識（這裡假設它是 img 標籤的 id）
+  //     $(document).on('click', '.kbl-word', function() {
+  //     console.log('audio click');
+  //     var audioId = $(this).attr('id'); // 獲取音樂檔案的標識（這裡假設它是 img 標籤的 id）
 
-//     // 執行 AJAX 請求來獲取音樂文件的 URL
-//     $.ajax({
-//         url: `https://e-dictionary.ilrdf.org.tw/MultiMedia/audio/ckv/${audioId}_%7B1%7D.mp3`, // 這裡替換為服務器上音樂文件的路徑
-//         // data: { id: audioId }, // 可以根據需要傳遞額外的數據
-//         type: 'GET',
-//         success: function(response) {
-//             // 假設服務器返回的是音樂文件的 URL
-//             var musicUrl = response.url;
+  //     // 執行 AJAX 請求來獲取音樂文件的 URL
+  //     $.ajax({
+  //         url: `https://e-dictionary.ilrdf.org.tw/MultiMedia/audio/ckv/${audioId}_%7B1%7D.mp3`, // 這裡替換為服務器上音樂文件的路徑
+  //         // data: { id: audioId }, // 可以根據需要傳遞額外的數據
+  //         type: 'GET',
+  //         success: function(response) {
+  //             // 假設服務器返回的是音樂文件的 URL
+  //             var musicUrl = response.url;
 
-//             // 創建一個新的 audio 元素並播放音樂
-//             var audio = new Audio(musicUrl);
-//             console.log('do audio play');
-//             audio.play();
-//         },
-//         error: function(error) {
-//             // 處理錯誤情況
-//             console.log('Error fetching music file:', error);
-//         }
-//     });
-// });
+  //             // 創建一個新的 audio 元素並播放音樂
+  //             var audio = new Audio(musicUrl);
+  //             console.log('do audio play');
+  //             audio.play();
+  //         },
+  //         error: function(error) {
+  //             // 處理錯誤情況
+  //             console.log('Error fetching music file:', error);
+  //         }
+  //     });
+  // });
   // #endregion 播放按鈕
 });

@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "url": "../images/avatar/default/zs-taz-0.png"
+    },
+    {
+        "id": 2,
+        "url": "../images/avatar/default/zs-Run-1.png"
+    },
+    {
+        "id": 3,
+        "url": "../images/avatar/default/zs-taz-1.png"
+    },
+    {
+        "id": 4,
+        "url": "../images/avatar/default/zs-totem-1.png"
+    },
+    {
+        "id": 5,
+        "url": "../images/avatar/default/zs-totem-2.png"
+    },
+    {
+        "id": 6,
+        "url": "../images/avatar/default/zs-totem-3.png"
+    },
+    {
+        "id": 7,
+        "url": "../images/avatar/default/zs-red-agate.png"
+    },
+    {
+        "id": 8,
+        "url": "../images/avatar/default/zs-stitch-flower.png"
+    },
+    {
+        "id": 9,
+        "url": "../images/avatar/default/zs-stitch-lq.png"
+    }
+]
