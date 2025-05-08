@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>大頭貼背袋編輯器</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background: #f8f8f8;
+    }
+    #canvas-wrapper {
+      width: 100%;
+      max-width: 450px;
+      margin: auto;
+      position: relative;
+    }
+    canvas {
+      width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+    input, button {
+      margin: 5px;
+    }
+    .bag-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .bag-btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .bag-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    @media (max-width: 500px) {
+      .bag-btn {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2>大頭貼 + 背袋 編輯器</h2>
+  <input type="file" id="uploadBase" accept="image/*" /><br />
+  <div class="bag-buttons">
+    <div class="bag-btn" onclick="switchBagImage('lubus_red_right.png')">
+      <img src="LOGO_1.png" alt="Bag 1">
+    </div>
+    <div class="bag-btn" onclick="switchBagImage('lubus_blue_right.png')">
+      <img src="LOGO_2.png" alt="Bag 2">
+    </div>
+  </div>
+  <button onclick="flipBagImage()">水平翻轉背袋</button>
+  <button onclick="downloadImage()">下載合成圖片</button><br />
+  <div id="canvas-wrapper">
+    <canvas id="avatarCanvas" width="400" height="400"></canvas>
+  </div>
+
+  <script>
+    const canvas = new fabric.Canvas('avatarCanvas', {
+      preserveObjectStacking: true
+    });
+
+    let backgroundImage;
+    let bagImage = null;
+    const undoStack = [];
+    const redoStack = [];
+
+    function saveState() {
+      redoStack.length = 0;
+      undoStack.push(canvas.toDatalessJSON());
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.ctrlKey && e.key === 'z') {
+        undo();
+      } else if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'z') {
+        redo();
+      }
+    });
+
+    function undo() {
+      if (undoStack.length > 1) {
+        const current = undoStack.pop();
+        redoStack.push(current);
+        const prev = undoStack[undoStack.length - 1];
+        canvas.loadFromJSON(prev, () => canvas.renderAll());
+      }
+    }
+
+    function redo() {
+      if (redoStack.length > 0) {
+        const next = redoStack.pop();
+        undoStack.push(next);
+        canvas.loadFromJSON(next, () => canvas.renderAll());
+      }
+    }
+
+    document.getElementById('uploadBase').addEventListener('change', e => {
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        fabric.Image.fromURL(event.target.result, img => {
+          img.set({
+            left: canvas.width / 2,
+            top: canvas.height / 2,
+            originX: 'center',
+            originY: 'center',
+            selectable: true,
+            hasControls: true
+          });
+          const scale = Math.min(canvas.width / img.width, canvas.height / img.height);
+          img.scale(scale);
+
+          if (backgroundImage) canvas.remove(backgroundImage);
+
+          backgroundImage = img;
+          canvas.add(backgroundImage);
+          backgroundImage.sendToBack();
+          saveState();
+        });
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    });
+
+    function switchBagImage(url) {
+      if (!bagImage) {
+        addBag(url);
+      } else {
+        const prevProps = {
+          left: bagImage.left,
+          top: bagImage.top,
+          scaleX: bagImage.scaleX,
+          scaleY: bagImage.scaleY,
+          angle: bagImage.angle,
+          flipX: bagImage.flipX,
+          originX: bagImage.originX,
+          originY: bagImage.originY
+        };
+        canvas.remove(bagImage);
+        fabric.Image.fromURL(url, img => {
+          img.set(prevProps);
+          bagImage = img;
+          canvas.add(img);
+          canvas.setActiveObject(img);
+          saveState();
+        });
+      }
+    }
+
+    function addBag(url) {
+      fabric.Image.fromURL(url, img => {
+        const scale = Math.min(canvas.width / img.width, canvas.height / img.height, 1) * 0.5;
+        img.set({
+          left: canvas.width / 2,
+          top: canvas.height / 2,
+          originX: 'center',
+          originY: 'center',
+          scaleX: scale,
+          scaleY: scale,
+          angle: 0
+        });
+        bagImage = img;
+        canvas.add(img);
+        canvas.setActiveObject(img);
+        saveState();
+      });
+    }
+
+    function flipBagImage() {
+      if (bagImage) {
+        bagImage.toggle('flipX');
+        canvas.renderAll();
+        saveState();
+      }
+    }
+
+    function downloadImage() {
+      const link = document.createElement('a');
+      link.download = 'avatar_with_bag.png';
+      link.href = canvas.toDataURL({ format: 'png' });
+      link.click();
+    }
+
+    fabric.Canvas.prototype.getAbsoluteCoords = function(object) {
+      const zoom = this.getZoom();
+      const objectCoords = object.getBoundingRect();
+      return {
+        left: objectCoords.left * zoom,
+        top: objectCoords.top * zoom
+      };
+    };
+
+    saveState();
+  </script>
+</body>
+</html>
